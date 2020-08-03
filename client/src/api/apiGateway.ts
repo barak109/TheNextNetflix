@@ -11,7 +11,7 @@ export const getShowes = async (query: string) => {
     });
     return response.data;
   } catch (error) {
-    console.log("Failed to getShowes !!");
+    console.log("Failed to getShowes");
     throw error;
   }
 };
@@ -25,7 +25,7 @@ export const getTopShowesName = async (query: string) => {
     });
     return response.data;
   } catch (error) {
-    console.log("Failed to getTopShowesName !!");
+    console.log("Failed to getTopShowesName");
     throw error;
   }
 };
