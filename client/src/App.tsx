@@ -4,16 +4,18 @@ import styles from "./App.module.scss";
 import {getShowes, getTopShowesName} from "./api/apiGateway";
 import {debounce} from "./api/helpFuncs";
 import {isEmptyOrSpaces} from "./utils/conversions";
+import Shows from "./components/Shows";
 
 function App() {
   const [names, setNames] = useState([]);
   const [text, setText] = useState("");
+  const [shows, setShows] = useState([]);
 
-  const onValueChange = (value: string) => {
-    // handle this laterrrrrrrrrrrrrrr !!!!!
+  const onValueChange = (value: string, method: string) => {
     if (!isEmptyOrSpaces(value)) {
-      // @ts-ignore
-      handleDebounce.current(value);
+      if (method !== "click" && method !== "enter")
+        // @ts-ignore
+        handleDebounce.current(value);
       setText(value);
     } else setNames([]);
   };
@@ -24,7 +26,10 @@ function App() {
   const handleDebounce = useRef(debounce(getShowesNames, 1000));
 
   const handleOnClick = (value: string) => {
-    console.log(value);
+    getShowes(value).then(data => {
+      setShows(data);
+    });
+    setNames([]);
   };
 
   return (
@@ -41,6 +46,7 @@ function App() {
           Search
         </button>
       </div>
+      <Shows shows={shows} />
     </div>
   );
 }
