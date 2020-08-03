@@ -1,0 +1,9 @@
+.root {
+  margin-top: 80px;
+  width: 800px;
+  // if you want it dynamic
+  // width: 50%
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
