@@ -39,7 +39,8 @@ app.get("/getTopShowesName", async (req: any, res: any) => {
       names[index] = {id, name: name.toLowerCase()};
     }
     res.json(names);
-  } catch {
+  } catch (err) {
+    console.log(err.message);
     res.status(500).send("problem with getTopShowesName");
   }
 });
